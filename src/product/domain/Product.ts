@@ -1,8 +1,11 @@
 export class Product {
   constructor(
     readonly id: number,
-    readonly name: string,
+    readonly type: string,
     readonly description: string,
-    readonly price: number
+    readonly dateTime: string,
+    readonly severity: string,
+    readonly status: string,
+    readonly affectedUserId: string
   ) {}
 }

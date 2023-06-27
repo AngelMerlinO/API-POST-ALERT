@@ -5,15 +5,22 @@ export class CreateProductUseCase {
   constructor(readonly productRepository: ProductRepository) {}
 
   async run(
-    name: string,
+    type: string,
     description: string,
-    price: number
+    dateTime: string,
+    dateTime: string,
+    severity: string,
+    status: string,
+    affectedUserId: string,
   ): Promise<Product | null> {
     try {
       const product = await this.productRepository.createProduct(
-        name,
+        type,
         description,
-        price
+        dateTime,
+        severity,
+        status,
+        affectedUserId
       );
       return product;
     } catch (error) {

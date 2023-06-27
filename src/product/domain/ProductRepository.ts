@@ -1,10 +1,12 @@
 import { Product } from "./Product";
 
 export interface ProductRepository {
-  
   createProduct(
-    name: string,
+    type: string,
     description: string,
-    price: number
+    dateTime: string,
+    daseverityteTime: string,
+    status: string,
+    affectedUserId: string
   ): Promise<Product | null>;
 }
