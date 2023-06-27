@@ -8,7 +8,6 @@ export class CreateProductUseCase {
     type: string,
     description: string,
     dateTime: string,
-    dateTime: string,
     severity: string,
     status: string,
     affectedUserId: string,
