@@ -4,7 +4,7 @@ import { ProductRepository } from "../domain/ProductRepository";
 
 export class MysqlProductRepository implements ProductRepository {
   async getAll(): Promise<Product[] | null> {
-    const sql = "SELECT * FROM product";
+    const sql = "SELECT * FROM movies";
     try {
       const [data]: any = await query(sql, []);
       const dataProducts = Object.values(JSON.parse(JSON.stringify(data)));
@@ -17,25 +17,6 @@ export class MysqlProductRepository implements ProductRepository {
             product.description,
             product.price
           )
-      );
-    } catch (error) {
-      return null;
-    }
-  }
-
-  async getById(userId: number): Promise<Product | null> {
-    const sql = "SELECT * FROM product WHERE id=?";
-    const params: any[] = [userId];
-    try {
-      const [result]: any = await query(sql, params);
-      //El objeto Result es un objeto que contiene info generada de la bd
-      /*No es necesaria la validación de la cantidad de filas afectadas, ya que, al
-            estar dentro de un bloque try/catch si hay error se captura en el catch */
-      return new Product(
-        result[0].id,
-        result[0].name,
-        result[0].description,
-        result[0].price
       );
     } catch (error) {
       return null;
