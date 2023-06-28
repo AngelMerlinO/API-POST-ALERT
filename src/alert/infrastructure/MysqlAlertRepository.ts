@@ -3,28 +3,28 @@ import { Alert } from "../domain/Alert";
 import { AlertRepository } from "../domain/AlertRepository";
 
 export class MysqlAlertRepository implements AlertRepository {
-  async getAll(): Promise<Alert[] | null> {
-    const sql = "SELECT * FROM alerts";
-    try {
-      const [data]: any = await query(sql, []);
-      const dataAlerts = Object.values(JSON.parse(JSON.stringify(data)));
+  // async getAll(): Promise<Alert[] | null> {
+  //   const sql = "SELECT * FROM alerts";
+  //   try {
+  //     const [data]: any = await query(sql, []);
+  //     const dataAlerts = Object.values(JSON.parse(JSON.stringify(data)));
 
-      return dataAlerts.map(
-        (alert: any) =>
-          new Alert(
-            alert.id,
-            alert.type,
-            alert.description,
-            alert.dateTime,
-            alert.severity,
-            alert.status,
-            alert.affectedUserId
-          )
-      );
-    } catch (error) {
-      return null;
-    }
-  }
+  //     return dataAlerts.map(
+  //       (alert: any) =>
+  //         new Alert(
+  //           alert.id,
+  //           alert.type,
+  //           alert.description,
+  //           alert.dateTime,
+  //           alert.severity,
+  //           alert.status,
+  //           alert.affectedUserId
+  //         )
+  //     );
+  //   } catch (error) {
+  //     return null;
+  //   }
+  // }
 
   async createAlert(
     type: string,
@@ -35,7 +35,7 @@ export class MysqlAlertRepository implements AlertRepository {
     affectedUserId: string
   ): Promise<Alert | null> {
     const sql =
-      "INSERT INTO alert (type, description, dateTime, severity, status, affectedUserId) VALUES (?, ?, ?, ?, ?, ?)";
+      "INSERT INTO alerts (type, description, dateTime, severity, status, affectedUserId) VALUES (?, ?, ?, ?, ?, ?)";
     const params: any[] = [type, description, dateTime,severity,status,affectedUserId];
     try {
       const [result]: any = await query(sql, params);
