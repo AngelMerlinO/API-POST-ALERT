@@ -4,7 +4,7 @@ import { ProductRepository } from "../domain/ProductRepository";
 
 export class MysqlProductRepository implements ProductRepository {
   async getAll(): Promise<Product[] | null> {
-    const sql = "SELECT * FROM movies";
+    const sql = "SELECT * FROM alerts";
     try {
       const [data]: any = await query(sql, []);
       const dataProducts = Object.values(JSON.parse(JSON.stringify(data)));
@@ -13,9 +13,12 @@ export class MysqlProductRepository implements ProductRepository {
         (product: any) =>
           new Product(
             product.id,
-            product.name,
+            product.type,
             product.description,
-            product.price
+            product.dateTime,
+            product.severity,
+            product.status,
+            product.affectedUserId
           )
       );
     } catch (error) {
@@ -24,19 +27,22 @@ export class MysqlProductRepository implements ProductRepository {
   }
 
   async createProduct(
-    name: string,
+    type: string,
     description: string,
-    price: number
+    dateTime: string,
+    severity: string,
+    status: string,
+    affectedUserId: string
   ): Promise<Product | null> {
     const sql =
-      "INSERT INTO product (name, description, price) VALUES (?, ?, ?)";
-    const params: any[] = [name, description, price];
+      "INSERT INTO product (type, description, dateTime, severity, status, affectedUserId) VALUES (?, ?, ?, ?, ?, ?)";
+    const params: any[] = [type, description, dateTime,severity,status,affectedUserId];
     try {
       const [result]: any = await query(sql, params);
       //El objeto Result es un objeto que contiene info generada de la bd
       /*No es necesaria la validación de la cantidad de filas afectadas, ya que, al
             estar dentro de un bloque try/catch si hay error se captura en el catch */
-      return new Product(result.insertId, name, description, price);
+      return new Product(result.insertId,type, description, dateTime,severity,status,affectedUserId);
     } catch (error) {
       return null;
     }

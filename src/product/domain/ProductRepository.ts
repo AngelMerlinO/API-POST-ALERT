@@ -5,7 +5,7 @@ export interface ProductRepository {
     type: string,
     description: string,
     dateTime: string,
-    daseverityteTime: string,
+    severity: string,
     status: string,
     affectedUserId: string
   ): Promise<Product | null>;

@@ -1,11 +1,15 @@
-import express from "express";
-import { Signale } from "signale";
+const express = require("express");
+const { Signale } = require("signale");
+const cors = require("cors");
 
-import { productRouter } from "./product/infrastructure/ProductRouter";
+const { productRouter } = require("./product/infrastructure/ProductRouter");
 
 const app = express();
 
 const signale = new Signale();
+
+// Agregar middleware de CORS
+app.use(cors());
 
 app.use(express.json());
 app.use("/alerts", productRouter);
