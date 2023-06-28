@@ -1,8 +1,8 @@
-import { Product } from "../domain/Product";
-import { ProductRepository } from "../domain/ProductRepository";
+import { Alert } from "../domain/Alert";
+import { AlertRepository } from "../domain/AlertRepository";
 
-export class CreateProductUseCase {
-  constructor(readonly productRepository: ProductRepository) {}
+export class CreateAlertUseCase {
+  constructor(readonly alertRepository: AlertRepository) {}
 
   async run(
     type: string,
@@ -11,9 +11,9 @@ export class CreateProductUseCase {
     severity: string,
     status: string,
     affectedUserId: string,
-  ): Promise<Product | null> {
+  ): Promise<Alert | null> {
     try {
-      const product = await this.productRepository.createProduct(
+      const alert = await this.alertRepository.createAlert(
         type,
         description,
         dateTime,
@@ -21,7 +21,7 @@ export class CreateProductUseCase {
         status,
         affectedUserId
       );
-      return product;
+      return alert;
     } catch (error) {
       return null;
     }

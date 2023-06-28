@@ -1,15 +1,15 @@
 import { Request, Response } from "express";
 
-import { CreateProductUseCase } from "../../application/CreateProductUseCase";
-//import { Product } from "../../domain/Product";
+import { CreateAlertUseCase } from "../../application/CreateAlertUseCase";
+//import { Alert } from "../../domain/Alert";
 
-export class CreateProductController {
-  constructor(readonly createProductUseCase: CreateProductUseCase) {}
+export class CreateAlertController {
+  constructor(readonly createAlertUseCase: CreateAlertUseCase) {}
 
   async run(req: Request, res: Response) {
     const data = req.body;
     try {
-      const product = await this.createProductUseCase.run(
+      const alert = await this.createAlertUseCase.run(
         data.type,
         data.description,
         data.dateTime,
@@ -18,18 +18,18 @@ export class CreateProductController {
         data.affectedUserId
       );
 
-      if (product)
+      if (alert)
         //Code HTTP : 201 -> Creado
         res.status(201).send({
           status: "success",
           data: {
-            id: product?.id,
-            type: product?.type,
-            description: product?.description,
-            dateTime: product?.dateTime,
-            severity: product?.severity,
-            status: product?.status,
-            affectedUserId: product?.affectedUserId
+            id: alert?.id,
+            type: alert?.type,
+            description: alert?.description,
+            dateTime: alert?.dateTime,
+            severity: alert?.severity,
+            status: alert?.status,
+            affectedUserId: alert?.affectedUserId
 
           },
         });

@@ -1,12 +1,12 @@
-import { Product } from "./Product";
+import { Alert } from "./Alert";
 
-export interface ProductRepository {
-  createProduct(
+export interface AlertRepository {
+  createAlert(
     type: string,
     description: string,
     dateTime: string,
     severity: string,
     status: string,
     affectedUserId: string
-  ): Promise<Product | null>;
+  ): Promise<Alert | null>;
 }

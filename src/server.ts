@@ -2,7 +2,7 @@ const express = require("express");
 const { Signale } = require("signale");
 const cors = require("cors");
 
-const { productRouter } = require("./product/infrastructure/ProductRouter");
+const { alertRouter } = require("./alert/infrastructure/AlertRouter");
 
 const app = express();
 
@@ -12,7 +12,7 @@ const signale = new Signale();
 app.use(cors());
 
 app.use(express.json());
-app.use("/alerts", productRouter);
+app.use("/alerts", alertRouter);
 
 app.listen(3000, () => {
   signale.success("Server online in port 3000");

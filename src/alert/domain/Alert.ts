@@ -1,4 +1,4 @@
-export class Product {
+export class Alert {
   constructor(
     readonly id: number,
     readonly type: string,
