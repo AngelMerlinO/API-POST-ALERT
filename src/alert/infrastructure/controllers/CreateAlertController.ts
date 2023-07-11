@@ -2,7 +2,6 @@ import { Request, Response } from "express";
 
 import { CreateAlertUseCase } from "../../application/CreateAlertUseCase";
 //import { Alert } from "../../domain/Alert";
-
 export class CreateAlertController {
   constructor(readonly createAlertUseCase: CreateAlertUseCase) {}
 

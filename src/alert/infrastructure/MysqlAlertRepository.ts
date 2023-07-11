@@ -3,28 +3,23 @@ import { Alert } from "../domain/Alert";
 import { AlertRepository } from "../domain/AlertRepository";
 
 export class MysqlAlertRepository implements AlertRepository {
-  // async getAll(): Promise<Alert[] | null> {
-  //   const sql = "SELECT * FROM alerts";
-  //   try {
-  //     const [data]: any = await query(sql, []);
-  //     const dataAlerts = Object.values(JSON.parse(JSON.stringify(data)));
 
-  //     return dataAlerts.map(
-  //       (alert: any) =>
-  //         new Alert(
-  //           alert.id,
-  //           alert.type,
-  //           alert.description,
-  //           alert.dateTime,
-  //           alert.severity,
-  //           alert.status,
-  //           alert.affectedUserId
-  //         )
-  //     );
-  //   } catch (error) {
-  //     return null;
-  //   }
-  // }
+     async getAlerts(
+      id:number 
+     ): Promise<Alert | null> {
+       const sql = "SELECT * FROM alerts WHERE affectedUserId = ?";
+       const params: any[] = [id];
+       try {
+         const [data]: any = await query(sql, params);
+         const dataAlerts = data;
+         console.log(dataAlerts);
+         
+
+         return dataAlerts;
+       } catch (error) {
+         return null;
+       }
+     }
 
   async createAlert(
     type: string,
