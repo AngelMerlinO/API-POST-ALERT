@@ -10,7 +10,7 @@ export class CreateAlertUseCase {
     dateTime: string,
     severity: string,
     status: string,
-    affectedUserId: string,
+    affectedUserId: string
   ): Promise<Alert | null> {
     try {
       const alert = await this.alertRepository.createAlert(

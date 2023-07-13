@@ -10,7 +10,7 @@ export interface AlertRepository {
     affectedUserId: string
   ): Promise<Alert | null>;
 
-  getAlerts(
-    id:number
-  ): Promise<Alert | null>;
+  getAlerts(id: number): Promise<Alert | null>;
+
+  updateAlert(id: number): Promise<Alert | null>;
 }
