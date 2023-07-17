@@ -7,6 +7,6 @@ export const alertRouter = express.Router();
 
 alertRouter.post("/", createAlertController.run.bind(createAlertController));
 
-alertRouter.get("/", getAlertsController.run.bind(getAlertsController));
+alertRouter.get("/:id", getAlertsController.run.bind(getAlertsController));
 
 alertRouter.put("/", updateAlertController.run.bind(updateAlertController));
