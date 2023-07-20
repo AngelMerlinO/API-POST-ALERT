@@ -60,6 +60,7 @@ export class MysqlAlertRepository implements AlertRepository {
     try {
       const [data]: any = await query(sql, params);
       const alertData = data[0];
+      console.log(`🤨😶🤐|| 🥓 file: MysqlAlertRepository.ts:63 🥓 MysqlAlertRepository 🥓 updateAlert 🥓 alertData||`, alertData)
       console.log(alertData);
 
       // Actualizar el valor del campo 'status' a false
